@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Glofay Digital Bookstore</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+}
+header {
+  background: #0f172a;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.08);
+}
+.card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+.price {
+  color: green;
+  font-weight: bold;
+}
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background: #1e40af;
+}
+.cart {
+  background: white;
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 8px;
+}
+.account {
+  background: #e0f2fe;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 8px;
+}
+footer {
+  background: #e5e7eb;
+  text-align: center;
+  padding: 15px;
+  margin-top: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1> Glofay Digital Bookstore</h1>
+  <p>Buy Digital Books • Pay Easily • Read Anywhere</p>
+</header>
+
+<div class="container">
+
+  <div class="grid" id="bookList"></div>
+
+  <div class="cart">
+    <h3> Your Cart</h3>
+    <div id="cartItems">No books added yet.</div>
+    <p><strong>Total: <span id="total">0</span></strong></p>
+
+    <div class="account">
+      <h4> Payment Details</h4>
+      <p><strong>Account Name:</strong> Glofay Quikpay Concept</p>
+      <p><strong>Account Number:</strong> 6748060495</p>
+      <p><strong>Bank:</strong> Moniepoint MFB</p>
+      <p>
+        After payment, send your proof to  
+        <a href="https://wa.me/2348103566930">+234 810 356 6930</a>
+      </p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+   WhatsApp Support: <a href="https://wa.me/2348103566930">+234 810 356 6930</a>
+</footer>
+
+<script>
+// ================= BOOK DATA =================
+const books = [
+  {
+    id: 1,
+    title: "Satan Get Lost",
+    author: "David Oyedepo",
+    price: 600,
+    file: "ebooks/Satan_Get_Lost.pdf",  
+    image: "ebooks/Satan_Get_Lost_cover.webp"
+  },
+  {
+    id: 2,
+    title: "A Believer's Guide To Effective Fasting & Prayer",
+    author: "Faith A. Oyedepo",
+    price: 1600,
+    file: "ebooks/A_Believers_Guide_To_Effective_Fasting_And_Prayer.pdf",
+    image: "ebooks/A_Believers_Guide_To_Effective_Fasting_And_Prayer_cover.jpeg"
+  },
+  {
+    id: 3,
+    title: "Success Buttons",
+    author: "David Oyedepo",
+    price: 800,
+    file: "ebooks/Success_Buttons.pdf",
+    image: "ebooks/Success_Buttons_cover.webp"
+  },
+  {
+    id: 4,
+    title: "Born To Win",
+    author: "David Oyedepo",
+    price: 900,
+    file: "ebooks/Born_To_Win.pdf",
+    image: "ebooks/Born_To_Win_cover.webp"
+  },
+  {
+    id: 5,
+    title: "Winning Prayer",
+    author: "David Oyedepo",
+    price: 1200,
+    file: "ebooks/Winning_Prayer.pdf",
+    image: "ebooks/Winning_Prayer_cover.webp"
+  }
+];
+
+// ================= LOAD BOOKS =================
+const bookList = document.getElementById("bookList");
+
+books.forEach(book => {
+  bookList.innerHTML += `
+    <div class="card">
+      <img src="${book.image}" alt="${book.title}">
+      <h3>${book.title}</h3>
+      <p>${book.author}</p>
+      <p class="price">${book.price}</p>
+      <button onclick="addToCart(${book.id})">Add to Cart</button>
+    </div>
+  `;
+});
+
+// ================= CART =================
+let cart = [];
+
+function addToCart(id) {
+  const book = books.find(b => b.id === id);
+  cart.push(book);
+  renderCart();
+}
+
+function renderCart() {
+  const cartItems = document.getElementById("cartItems");
+  const total = document.getElementById("total");
+
+  cartItems.innerHTML = "";
+  let sum = 0;
+
+  cart.forEach(item => {
+    sum += item.price;
+    cartItems.innerHTML += `<p>${item.title} – ${item.price}</p>`;
+  });
+
+  total.innerText = sum;
+}
+</script>
+
+</body>
+</html>

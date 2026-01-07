@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -17,28 +17,32 @@ header {
   text-align: center;
   padding: 20px;
 }
-container {
+header img {
+  width: 120px;
+  margin-bottom: 10px;
+}
+.container {
   max-width: 1100px;
   margin: auto;
   padding: 20px;
 }
-grid {
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
-card {
+.card {
   background: white;
   border-radius: 8px;
   padding: 15px;
   box-shadow: 0 4px 10px rgba(0,0,0,.08);
 }
-card img {
+.card img {
   width: 100%;
   height: 300px;
   object-fit: cover;
 }
-price {
+.price {
   color: green;
   font-weight: bold;
 }
@@ -54,13 +58,13 @@ button {
 button:hover {
   background: #1e40af;
 }
-cart {
+.cart {
   background: white;
   margin-top: 30px;
   padding: 20px;
   border-radius: 8px;
 }
-account {
+.account {
   background: #e0f2fe;
   padding: 15px;
   margin-top: 15px;
@@ -78,7 +82,8 @@ footer {
 <body>
 
 <header>
-  <h1> 📚 Glofay Digital Bookstore</h1>
+  <img src="logo.webp" alt="Glofay Logo">
+  <h1>📚 Glofay Digital Bookstore</h1>
   <p>Buy Digital Books • Pay Easily • Read Anywhere</p>
 </header>
 
@@ -87,17 +92,16 @@ footer {
   <div class="grid" id="bookList"></div>
 
   <div class="cart">
-    <h3> Your Cart</h3>
+    <h3>🛒 Your Cart</h3>
     <div id="cartItems">No books added yet.</div>
-    <p><strong>Total: <span id="total">0</span></strong></p>
+    <p><strong>Total: ₦<span id="total">0</span></strong></p>
 
     <div class="account">
-      <h4> Payment Details</h4>
+      <h4>💳 Payment Details</h4>
       <p><strong>Account Name:</strong> Glofay Quikpay Concept</p>
       <p><strong>Account Number:</strong> 6748060495</p>
       <p><strong>Bank:</strong> Moniepoint MFB</p>
-      <p>
-        After payment, send your proof to  
+      <p>After payment, send your proof to  
         <a href="https://wa.me/2348103566930">+234 810 356 6930</a>
       </p>
     </div>
@@ -106,7 +110,7 @@ footer {
 </div>
 
 <footer>
-  📱 WhatsApp Support: <a href="https://wa.me/2348103566930">+234 810 356 6930</a>
+  📲 WhatsApp Support: <a href="https://wa.me/2348103566930">+234 810 356 6930</a>
 </footer>
 
 <script>
@@ -117,16 +121,16 @@ const books = [
     title: "Satan Get Lost",
     author: "David Oyedepo",
     price: 600,
-    file: "ebooks/Satan_Get_Lost.pdf",  
-    image: "ebooks/Satan_Get_Lost_cover.webp"
+    file: "ebooks/Satan_Get_Lost.pdf",
+    image: "Satan_Get_Lost_cover.webp"
   },
   {
     id: 2,
     title: "A Believer's Guide To Effective Fasting & Prayer",
     author: "Faith A. Oyedepo",
-    price: 1600,
+    price: 1000,
     file: "ebooks/A_Believers_Guide_To_Effective_Fasting_And_Prayer.pdf",
-    image: "ebooks/A_Believers_Guide_To_Effective_Fasting_And_Prayer_cover.jpeg"
+    image: "A_Believers_Guide_cover.jpeg"
   },
   {
     id: 3,
@@ -134,7 +138,7 @@ const books = [
     author: "David Oyedepo",
     price: 800,
     file: "ebooks/Success_Buttons.pdf",
-    image: "ebooks/Success_Buttons_cover.webp"
+    image: "Success_Buttons_cover.webp"
   },
   {
     id: 4,
@@ -142,7 +146,7 @@ const books = [
     author: "David Oyedepo",
     price: 900,
     file: "ebooks/Born_To_Win.pdf",
-    image: "ebooks/Born_To_Win_cover.webp"
+    image: "Born_To_Win_cover.webp"
   },
   {
     id: 5,
@@ -150,7 +154,7 @@ const books = [
     author: "David Oyedepo",
     price: 1200,
     file: "ebooks/Winning_Prayer.pdf",
-    image: "ebooks/Winning_Prayer_cover.webp"
+    image: "Winning_Prayer_cover.webp"
   }
 ];
 
@@ -163,7 +167,7 @@ books.forEach(book => {
       <img src="${book.image}" alt="${book.title}">
       <h3>${book.title}</h3>
       <p>${book.author}</p>
-      <p class="price">${book.price}</p>
+      <p class="price">₦${book.price}</p>
       <button onclick="addToCart(${book.id})">Add to Cart</button>
     </div>
   `;
@@ -187,7 +191,7 @@ function renderCart() {
 
   cart.forEach(item => {
     sum += item.price;
-    cartItems.innerHTML += `<p>${item.title} – ${item.price}</p>`;
+    cartItems.innerHTML += `<p>${item.title} – ₦${item.price}</p>`;
   });
 
   total.innerText = sum;
@@ -195,5 +199,4 @@ function renderCart() {
 </script>
 
 </body>
-
 </html>

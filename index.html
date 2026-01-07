@@ -19,7 +19,6 @@ header {
 }
 header img {
   width: 120px;
-  margin-bottom: 10px;
 }
 .container {
   max-width: 1100px;
@@ -28,7 +27,7 @@ header img {
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
 }
 .card {
@@ -39,7 +38,7 @@ header img {
 }
 .card img {
   width: 100%;
-  height: 300px;
+  height: 280px;
   object-fit: cover;
 }
 .price {
@@ -54,9 +53,6 @@ button {
   width: 100%;
   border-radius: 5px;
   cursor: pointer;
-}
-button:hover {
-  background: #1e40af;
 }
 .cart {
   background: white;
@@ -83,7 +79,7 @@ footer {
 
 <header>
   <img src="logo.webp" alt="Glofay Logo">
-  <h1>📚 Glofay Digital Bookstore</h1>
+  <h1>Glofay Digital Bookstore</h1>
   <p>Buy Digital Books • Pay Easily • Read Anywhere</p>
 </header>
 
@@ -92,17 +88,17 @@ footer {
   <div class="grid" id="bookList"></div>
 
   <div class="cart">
-    <h3>🛒 Your Cart</h3>
+    <h3>Your Cart</h3>
     <div id="cartItems">No books added yet.</div>
     <p><strong>Total: ₦<span id="total">0</span></strong></p>
 
     <div class="account">
-      <h4>💳 Payment Details</h4>
+      <h4>Payment Details</h4>
       <p><strong>Account Name:</strong> Glofay Quikpay Concept</p>
       <p><strong>Account Number:</strong> 6748060495</p>
       <p><strong>Bank:</strong> Moniepoint MFB</p>
-      <p>After payment, send your proof to  
-        <a href="https://wa.me/2348103566930">+234 810 356 6930</a>
+      <p>Send proof to WhatsApp:
+        <a href="https://wa.me/2348103566930">+2348103566930</a>
       </p>
     </div>
   </div>
@@ -110,61 +106,28 @@ footer {
 </div>
 
 <footer>
-  📲 WhatsApp Support: <a href="https://wa.me/2348103566930">+234 810 356 6930</a>
+  WhatsApp Support: +2348103566930
 </footer>
 
 <script>
-// ================= BOOK DATA =================
 const books = [
-  {
-    id: 1,
-    title: "Satan Get Lost",
-    author: "David Oyedepo",
-    price: 600,
-    file: "ebooks/Satan Get Lost.pdf",
-    image: "Satan Get Lost cover.webp"
-  },
-  {
-    id: 2,
-    title: "A Believer's Guide To Effective Fasting And Prayer",
-    author: "Faith A. Oyedepo",
-    price: 1000,
-    file: "ebooks/A BELIEVER'S GUIDE TO EFFECTIVE FASTING AND PRAYER.pdf",
-    image: "A BELIEVERS GUIDE TO EFFECTIVE FASTING AND PRAYER COVER.jpeg"
-  },
-  {
-    id: 3,
-    title: "Success Buttons",
-    author: "David Oyedepo",
-    price: 800,
-    file: "ebooks/SUCCESS BUTTONS.pdf",
-    image: "SUCCESS BUTTONSCOVER.webp"
-  },
-  {
-    id: 4,
-    title: "Born To Win",
-    author: "David Oyedepo",
-    price: 900,
-    file: "ebooks/BORN TOWIN.pdf",
-    image: "BORN TO WIN COVER.webp"
-  },
-  {
-    id: 5,
-    title: "Winning Prayer",
-    author: "David Oyedepo",
-    price: 1200,
-    file: "ebooks/WINNING PRAYER.pdf",
-    image: "WINNING PRAYER COVER.webp"
-  }
+  { id:1, title:"Satan Get Lost", author:"David Oyedepo", price:600, image:"satan_get_lost.webp" },
+  { id:2, title:"Fasting and Prayer", author:"Faith A. Oyedepo", price:1000, image:"fasting_prayer.webp" },
+  { id:3, title:"Success Buttons", author:"David Oyedepo", price:800, image:"success_buttons.webp" },
+  { id:4, title:"Born To Win", author:"David Oyedepo", price:900, image:"born_to_win.webp" },
+  { id:5, title:"Winning Prayer", author:"David Oyedepo", price:1200, image:"winning_prayer.webp" }
 ];
 
-// ================= LOAD BOOKS =================
 const bookList = document.getElementById("bookList");
+const cartItems = document.getElementById("cartItems");
+const total = document.getElementById("total");
+
+let cart = [];
 
 books.forEach(book => {
   bookList.innerHTML += `
     <div class="card">
-      <img src="${book.image}" alt="${book.title}">
+      <img src="${book.image}">
       <h3>${book.title}</h3>
       <p>${book.author}</p>
       <p class="price">₦${book.price}</p>
@@ -173,32 +136,22 @@ books.forEach(book => {
   `;
 });
 
-// ================= CART =================
-let cart = [];
-
-function addToCart(id) {
+function addToCart(id){
   const book = books.find(b => b.id === id);
   cart.push(book);
   renderCart();
 }
 
-function renderCart() {
-  const cartItems = document.getElementById("cartItems");
-  const total = document.getElementById("total");
-
+function renderCart(){
   cartItems.innerHTML = "";
   let sum = 0;
-
-  cart.forEach(item => {
+  cart.forEach(item=>{
     sum += item.price;
-    cartItems.innerHTML += `<p>${item.title} – ₦${item.price}</p>`;
+    cartItems.innerHTML += `<p>${item.title} - ₦${item.price}</p>`;
   });
-
   total.innerText = sum;
 }
 </script>
 
 </body>
 </html>
-
-

@@ -159,9 +159,91 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 });
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  // ====== BOOK DATA ======
+  const books = [
+    { id:1, title:"Satan Get Lost", author:"David Oyedepo", price:600, image:"satan_get_lost.jpeg" },
+    { id:2, title:"Fasting and Prayer", author:"Faith A. Oyedepo", price:1000, image:"a_believers_guide_to_effective_fasting_prayer.jpeg" },
+    { id:3, title:"Success Buttons", author:"David Oyedepo", price:800, image:"success_buttons.jpeg" },
+    { id:4, title:"Born To Win", author:"David Oyedepo", price:900, image:"born_to_win.jpeg" },
+    { id:5, title:"Winning Prayer", author:"David Oyedepo", price:1200, image:"winning_prayer.jpeg" }
+  ];
+
+  const bookList = document.getElementById("bookList");
+  const cartItems = document.getElementById("cartItems");
+  const total = document.getElementById("total");
+
+  let cart = [];
+
+  // ====== RENDER BOOKS ======
+  books.forEach(book => {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `
+      <img src="${book.image}" alt="${book.title}">
+      <h3>${book.title}</h3>
+      <p>${book.author}</p>
+      <p class="price">₦${book.price}</p>
+      <button>Buy via WhatsApp</button>
+    `;
+    div.querySelector("button").onclick = () => addToCart(book);
+    bookList.appendChild(div);
+  });
+
+  // ====== ADD TO CART ======
+  function addToCart(book) {
+    cart.push(book);
+    renderCart();
+  }
+
+  // ====== RENDER CART ======
+  function renderCart() {
+    cartItems.innerHTML = "";
+    let sum = 0;
+    cart.forEach(item => {
+      sum += item.price;
+      cartItems.innerHTML += `<p>${item.title} - ₦${item.price}</p>`;
+    });
+    total.innerText = sum;
+
+    // Add View Cart / Checkout button if not already added
+    if (!document.getElementById("checkoutBtn") && cart.length > 0) {
+      const checkoutBtn = document.createElement("button");
+      checkoutBtn.id = "checkoutBtn";
+      checkoutBtn.innerText = "View Cart / Checkout via WhatsApp";
+      checkoutBtn.style.marginTop = "10px";
+      checkoutBtn.style.background = "#10b981"; // Green
+      checkoutBtn.style.color = "white";
+      checkoutBtn.style.padding = "10px";
+      checkoutBtn.style.border = "none";
+      checkoutBtn.style.borderRadius = "5px";
+      checkoutBtn.style.cursor = "pointer";
+      checkoutBtn.onclick = checkoutWhatsApp;
+      cartItems.parentNode.appendChild(checkoutBtn);
+    }
+  }
+
+  // ====== CHECKOUT VIA WHATSAPP ======
+  function checkoutWhatsApp() {
+    if (cart.length === 0) return alert("Your cart is empty!");
+    
+    let message = "Hello! I want to buy the following books:\n";
+    cart.forEach(item => {
+      message += `- ${item.title} by ${item.author} (₦${item.price})\n`;
+    });
+    message += `\nTotal: ₦${cart.reduce((a,b)=>a+b.price,0)}\nMy payment proof will be sent.`;
+    
+    const url = `https://wa.me/2348103566930?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank");
+  }
+
+});
 </script>
 
 </body>
 </html>
+
 
 

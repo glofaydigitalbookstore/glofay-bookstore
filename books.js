@@ -13,7 +13,7 @@ const books = [
     author: "Faith A. Oyedepo",
     price: 1000,
     file:"ebooks/a_believers_guide_to_effective_fasting_and_prayer.pdf",
-    image:"a_believers_guide_to_effective_fasting_and_prayer.jpeg",
+    image:"a_believers_guide_to_effective_fasting_and_prayer_cover.jpeg",
   },
   {
     id: 3,
@@ -40,4 +40,5 @@ const books = [
     image:"winning_prayer.jpeg",
   }
 ];
+
 

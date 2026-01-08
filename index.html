@@ -17,27 +17,27 @@ header {
   text-align: center;
   padding: 20px;
 }
-container {
+.container {
   max-width: 1100px;
   margin: auto;
   padding: 20px;
 }
-grid {
+.grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
 }
-card {
+.card {
   background: white;
   padding: 15px;
   border-radius: 8px;
 }
-card img {
+.card img {
   width: 100%;
   height: 280px;
   object-fit: cover;
 }
-price {
+.price {
   color: green;
   font-weight: bold;
 }
@@ -159,8 +159,26 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 });
+</script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+
+  // ====== BOOK DATA ======
+  const books = [
+    { id:1, title:"Satan Get Lost", author:"David Oyedepo", price:600, image:"satan_get_lost.jpeg" },
+    { id:2, title:"Fasting and Prayer", author:"Faith A. Oyedepo", price:1000, image:"a_believers_guide_to_effective_fasting_prayer.jpeg" },
+    { id:3, title:"Success Buttons", author:"David Oyedepo", price:800, image:"success_buttons.jpeg" },
+    { id:4, title:"Born To Win", author:"David Oyedepo", price:900, image:"born_to_win.jpeg" },
+    { id:5, title:"Winning Prayer", author:"David Oyedepo", price:1200, image:"winning_prayer.jpeg" }
+  ];
+
+  const bookList = document.getElementById("bookList");
+  const cartItems = document.getElementById("cartItems");
+  const total = document.getElementById("total");
+
+  let cart = [];
+
+  // ====== RENDER BOOKS ======
   books.forEach(book => {
     const div = document.createElement("div");
     div.className = "card";
@@ -174,10 +192,14 @@ document.addEventListener("DOMContentLoaded", function () {
     div.querySelector("button").onclick = () => addToCart(book);
     bookList.appendChild(div);
   });
+
+  // ====== ADD TO CART ======
   function addToCart(book) {
     cart.push(book);
     renderCart();
   }
+
+  // ====== RENDER CART ======
   function renderCart() {
     cartItems.innerHTML = "";
     let sum = 0;
@@ -186,6 +208,8 @@ document.addEventListener("DOMContentLoaded", function () {
       cartItems.innerHTML += `<p>${item.title} - ₦${item.price}</p>`;
     });
     total.innerText = sum;
+
+    // Add View Cart / Checkout button if not already added
     if (!document.getElementById("checkoutBtn") && cart.length > 0) {
       const checkoutBtn = document.createElement("button");
       checkoutBtn.id = "checkoutBtn";
@@ -201,6 +225,8 @@ document.addEventListener("DOMContentLoaded", function () {
       cartItems.parentNode.appendChild(checkoutBtn);
     }
   }
+
+  // ====== CHECKOUT VIA WHATSAPP ======
   function checkoutWhatsApp() {
     if (cart.length === 0) return alert("Your cart is empty!");
     
@@ -216,10 +242,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 </script>
-
 </body>
 </html>
-
-
-
-

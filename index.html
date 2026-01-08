@@ -92,7 +92,11 @@ document.addEventListener("DOMContentLoaded", function () {
     { id:4, title:"Born To Win", author:"David Oyedepo", price:900, image:"born_to_win.jpeg" },
     { id:5, title:"Winning Prayer", author:"David Oyedepo", price:1200, image:"winning_prayer.jpeg" }
   ];
+const bookList = document.getElementById("bookList");
+  const cartItems = document.getElementById("cartItems");
+  const total = document.getElementById("total");
 
+  let cart = [];
   // ====== RENDER BOOKS ======
   books.forEach(book => {
     const div = document.createElement("div");
@@ -159,6 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 </body>
 </html>
+
 
 
 

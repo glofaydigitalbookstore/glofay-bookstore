@@ -7,3 +7,8 @@
     { id:5, title:"Winning Prayer", author:"David Oyedepo", price:1200, image:"winning_prayer.jpeg" }
   ];
 
+const bookList = document.getElementById("bookList");
+  const cartItems = document.getElementById("cartItems");
+  const total = document.getElementById("total");
+
+  let cart = [];

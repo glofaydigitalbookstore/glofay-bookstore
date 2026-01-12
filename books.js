@@ -1,5 +1,5 @@
 // ====== BOOK DATA ======
-  const books = [
+ const books = [
   {id:1,title:"Satan Get Lost",author:"David Oyedepo",price:600,image:"satan_get_lost.jpeg",file:"ebooks/satan_get_lost.pdf",category:"Faith"},
   {id:2,title:"A Believers Guide To Effective Fasting and Prayer",author:"Faith A. Oyedepo",price:1000,image:"a_believers_guide_to_effective_fasting_and_prayer_cover.jpeg",file:"ebooks/a_believers_guide_to_effective_fasting_and_prayer.pdf",category:"Prayer"},
   {id:3,title:"Success Buttons",author:"David Oyedepo",price:800,image:"success_buttons.jpeg",file:"ebooks/success_buttons.pdf",category:"Success"},

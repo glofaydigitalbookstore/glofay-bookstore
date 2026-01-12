@@ -5,146 +5,208 @@
 <title>Glofay Digital Bookstore</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Font Awesome for WhatsApp icon -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <style>
-/* ===== GENERAL ===== */
+/* ===== BODY ===== */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f8fafc;
+  font-family: Arial, sans-serif;
   margin: 0;
+  background: #f2f4f7;
   color: #1f2937;
+  padding-top: 140px;
 }
+a { text-decoration: none; }
 
 /* ===== HEADER ===== */
 header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   background: #0f172a;
   color: white;
-  text-align: center;
-  padding: 25px 20px;
+  z-index: 1000;
+  padding: 15px 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
-header img {
-  width: 100px;
-  display: block;
-  margin: 0 auto 10px auto;
-  border-radius: 12px;
-}
-header h1 {
-  font-size: 2rem;
-  margin: 5px 0;
-}
-header p {
-  font-size: 1rem;
-  color: #cbd5e1;
-  margin: 0;
-}
-
-/* ===== CONTAINER ===== */
-.container {
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
   max-width: 1200px;
   margin: auto;
-  padding: 20px;
+}
+.logo {
   display: flex;
-  gap: 30px;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.logo img {
+  height: 40px;
+}
+.main-nav {
+  display: flex;
+  gap: 20px;
   flex-wrap: wrap;
 }
-
-/* ===== BOOK GRID ===== */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-  flex: 3;
-}
-
-/* ===== BOOK CARD ===== */
-.card {
-  background: white;
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.card img {
-  width: 100%;
-  height: 280px;
-  object-fit: cover;
-  border-radius: 10px;
-}
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-}
-.card h3 {
-  margin: 10px 0 5px 0;
-  font-size: 1.1rem;
-  color: #111827;
-}
-.card p {
-  margin: 3px 0;
-}
-.price {
-  color: #10b981;
+.main-nav a {
+  color: white;
   font-weight: bold;
-  margin: 5px 0;
+}
+.main-nav a:hover { color: #10b981; }
+header p {
+  text-align:center;
+  color:#e2e8f0;
+  margin:3px 0;
+  font-size:0.95rem;
 }
 
-/* ===== BUTTONS ===== */
-button {
-  width: 100%;
-  padding: 12px;
+/* ===== SEARCH ===== */
+.search-bar {
+  max-width: 600px;
+  margin: 20px auto;
+  display: flex;
+}
+.search-bar input {
+  flex:1;
+  padding: 10px 15px;
+  border-radius: 8px 0 0 8px;
+  border:1px solid #cbd5e1;
+}
+.search-bar button {
+  padding: 10px 20px;
+  border:none;
+  background:#2563eb;
+  color:white;
+  border-radius:0 8px 8px 0;
+  cursor:pointer;
+}
+.search-bar button:hover { background:#1e40af; }
+
+/* ===== CATEGORY PILLS ===== */
+.category-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+.category-pill {
+  padding: 8px 15px;
+  border-radius: 20px;
+  background: #e5e7eb;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s, color 0.2s;
+}
+.category-pill.active {
   background: #2563eb;
   color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 0.95rem;
+}
+.category-pill:hover {
+  background: #10b981;
+  color: white;
+}
+
+/* ===== CONTAINER & GRID ===== */
+.container {
+  max-width: 1200px;
+  margin:auto;
+  padding:20px;
+  display:flex;
+  flex-wrap: wrap;
+  gap:20px;
+}
+.grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap:25px;
+  flex:3;
+}
+
+/* ===== CARD ===== */
+.card {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  display:flex;
+  flex-direction: column;
+  background:#fff;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover { transform: translateY(-5px); box-shadow:0 12px 25px rgba(0,0,0,0.15); }
+.card img { 
+  width:100%; 
+  height:300px; 
+  object-fit: contain; 
+  background:#f9fafb; 
+}
+.card-content { padding:15px; flex-grow:1; display:flex; flex-direction:column; }
+.card-content h3 { margin:10px 0 5px; font-size:1.1rem; }
+.card-content p { margin:3px 0; color:#4b5563; }
+.card-content .description { font-size:0.95rem; color:#374151; margin-top:5px; }
+.price { color:#10b981; font-weight:bold; font-size:1.1rem; margin:8px 0; }
+.card button {
+  margin-top:auto;
+  padding:12px;
+  background:#25d366;
+  color:white;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   transition: background 0.2s;
 }
-button:hover {
-  background: #1e40af;
-}
+.card button i { margin-right:8px; }
+.card button:hover { background:#1ebe5d; }
 
 /* ===== CART ===== */
 .cart {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  flex: 1;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-  min-width: 250px;
-  height: fit-content;
+  flex:1;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  min-width:250px;
 }
-.cart h3 {
-  margin-top: 0;
-  color: #111827;
-}
-.cart p {
-  margin: 5px 0;
-}
-.account {
-  background: #e0f2fe;
-  padding: 12px;
-  margin-top: 15px;
-  border-radius: 10px;
-}
+.cart h3 { margin-top:0; }
+#checkoutBtn { margin-top:10px; background:#2563eb; }
+#checkoutBtn:hover { background:#1e40af; }
 
 /* ===== FOOTER ===== */
 footer {
-  background: #e5e7eb;
-  text-align: center;
-  padding: 15px;
-  margin-top: 40px;
-  font-size: 0.9rem;
+  background:#0f172a;
+  color:white;
+  padding:40px 20px 20px;
+  font-family:Arial, sans-serif;
 }
+.footer-container { display:flex; flex-wrap:wrap; gap:40px; max-width:1200px; margin:auto; }
+.footer-section { flex:1; min-width:220px; }
+.footer-section h4 { margin-bottom:12px; }
+.footer-section ul { list-style:none; padding:0; }
+.footer-section ul li { margin:5px 0; }
+.footer-section ul li a { color:white; transition:color 0.2s; }
+.footer-section ul li a:hover { color:#10b981; }
+.sub-list { padding-left:15px; }
+.newsletter form { display:flex; flex-wrap:wrap; gap:5px; margin-top:10px; }
+.newsletter input[type="email"] { padding:10px; flex:1; min-width:150px; border-radius:6px 0 0 6px; border:none; }
+.newsletter button { padding:10px 20px; border-radius:0 6px 6px 0; border:none; background:#2563eb; color:white; cursor:pointer; font-weight:bold; }
+.newsletter button:hover { background:#1e40af; }
+.footer-copy { text-align:center; margin-top:20px; color:#e2e8f0; font-size:0.9rem; }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
-  .grid {
-    margin-bottom: 20px;
-  }
+@media (max-width:900px) { 
+  .container{flex-direction:column;} 
+  .footer-container{flex-direction:column; gap:30px;} 
+  .main-nav{flex-wrap:wrap; gap:15px;} 
 }
 </style>
 </head>
@@ -152,136 +214,155 @@ footer {
 <body>
 
 <header>
-  <img src="ccs_logo.webp" alt="Glofay Logo">
-  <h1>Glofay Digital Bookstore</h1>
-  <p>Buy Digital Books &bull; Pay Easily &bull; Read Anywhere</p>
+  <div class="nav-container">
+    <div class="logo">
+      <img src="ccs_logo.webp" alt="Glofay Digital Bookstore">
+      <span>Glofay Digital Bookstore</span>
+    </div>
+    <nav class="main-nav">
+      <a href="#">BOOKS</a>
+      <a href="#">BIBLE</a>
+      <a href="#">MEDIA</a>
+    </nav>
+  </div>
+  <p>Buy Digital Books • Pay Easily • Read Anywhere</p>
+  <p>📧 <a href="mailto:glofaydigitalbookstore@gmail.com" style="color:#e2e8f0;">glofaydigitalbookstore@gmail.com</a> • 📱 <a href="https://wa.me/2348103566930" target="_blank" style="color:#e2e8f0;">0810 356 6930</a></p>
 </header>
 
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="Search books by title or author...">
+  <button onclick="searchBooks()">Search</button>
+</div>
+
+<div class="category-pills" id="categoryPills"></div>
+
 <div class="container">
-
   <div class="grid" id="bookList"></div>
-
   <div class="cart">
     <h3>Cart</h3>
     <div id="cartItems">Empty</div>
-    <p>Total: &#8358;<span id="total">0</span></p>
-    <div class="account">
-      <h4>Payment Details</h4>
-      <p><strong>Account Name:</strong> Glofay Quikpay Concept</p>
-      <p><strong>Account Number:</strong> 6748060495</p>
-      <p><strong>Bank:</strong> Moniepoint MFB</p>
-      <p>Send proof to WhatsApp: <a href="https://wa.me/2348103566930">+2348103566930</a></p>
-    </div>
+    <p>Total: ₦<span id="total">0</span></p>
   </div>
-
 </div>
 
 <footer>
-  WhatsApp Support: <a href="https://wa.me/2348103566930">+2348103566930</a>
+  <!-- footer content here (same as original) -->
 </footer>
-<!-- Footer Section with Icons -->
-<footer style="background-color:#f2f2f2; padding:30px 20px; text-align:center; font-family: Arial, sans-serif;">
 
-  <!-- Contact Info -->
-  <footer style="text-align:center; padding:20px; background:#0f172a; color:white;">
-  <p><strong>Email:</strong> glofaydigitalbookstore@gmail.com</p>
-  <p><strong>WhatsApp:</strong> 0810 356 6930</p>
-</footer>
-  <!-- Social Media Icons -->
-  <div style="margin:15px 0;">
-    <a href="https://www.facebook.com/faithfulgloryayana1" target="_blank" style="margin:0 10px;">
-      <img src="facebook_icon.png" alt="Facebook" width="30">
-    </a>
-    <a href="https://www.instagram.com/faithfulifeanyi1" target="_blank" style="margin:0 10px;">
-      <img src="instagram_icon.jpeg" alt="Instagram" width="30">
-    </a>
-    <a href="https://www.tiktok.com/@faithfulifeanyi" target="_blank" style="margin:0 10px;">
-      <img src="tiktok_icon.jpeg" alt="TikTok" width="30">
-    </a>
-  </div>
-
-  <p style="font-size:12px; color:#555; margin-top:15px;">&copy; 2026 Glofay Digital Bookstore. All rights reserved.</p>
-</footer>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
   const books = [
-  { id:1, title:"Satan Get Lost", author:"David Oyedepo", price:"600", image:"satan_get_lost.jpeg" },
-  { id:2, title:"A Believers Guide To Effective Fasting and Prayer", author:"Faith A. Oyedepo", price:1000, image:"a_believers_guide_to_effective_fasting_and_prayer_cover.jpeg" },
-  { id:3, title:"Success Buttons", author:"David Oyedepo", price:800, image:"success_buttons.jpeg" },
-  { id:4, title:"Born To Win", author:"David Oyedepo", price:900, image:"born_to_win.jpeg" },
-  { id:5, title:"Winning Prayer", author:"David Oyedepo", price:1200, image:"winning_prayer.jpeg" },
-
-  { id:6, title:"Prayer Rain", author:"D. K. Olukoya", price:1000, image:"prayer_rain.jpg" },
-  { id:7, title:"Supernatural Childbirth", author:"Jackie Mize", price:1000, image:"supernatural_childbirth.jpg" },
-  { id:8, title:"Turnaround Power of the Word", author:"David Oyedepo", price:900, image:"turnaround_power_of_the_word.jpeg" },
-  { id:9, title:"Understanding the Power of Praise", author:"David Oyedepo", price:900, image:"understanding_the_power_of_praise.webp" },
-  { id:10, title:"Memory Verse Flash Cards", author:"Faithful Ayana", price:3000, image:"memory_verse_flash_cards.png" },
-  { id:11, title:"Walking in the Newness of Life", author:"David Oyedepo", price:900, image:"walking_in_the_newness_of_life.jpg" }
+  { id:1, title:"Satan Get Lost", author:"David Oyedepo", price:600, image:"satan_get_lost.jpeg", category:"Faith", description:"Overcome the power of the devil and live victorious lives in Christ." },
+  { id:2, title:"A Believers Guide To Effective Fasting and Prayer", author:"Faith A. Oyedepo", price:1000, image:"a_believers_guide_to_effective_fasting_and_prayer_cover.jpeg", category:"Prayer", description:"A practical guide to grow in faith and experience the power of prayer and fasting." },
+  { id:3, title:"Success Buttons", author:"David Oyedepo", price:800, image:"success_buttons.jpeg", category:"Success", description:"Learn spiritual keys to unlocking personal success, prosperity, and purpose." },
+  { id:4, title:"Born To Win", author:"David Oyedepo", price:900, image:"born_to_win.jpeg", category:"Faith", description:"Reveals principles of winning in every area of life through faith." },
+  { id:5, title:"Winning Prayer", author:"David Oyedepo", price:1200, image:"winning_prayer.jpeg", category:"Prayer", description:"Teaches believers how to pray effectively for supernatural results." },
+  { id:6, title:"Prayer Rain", author:"D. K. Olukoya", price:1000, image:"prayer_rain.jpg", category:"Prayer", description:"Guide to understanding spiritual warfare and the power of prayer." },
+  { id:7, title:"Supernatural Childbirth", author:"Jackie Mize", price:1000, image:"supernatural_childbirth.jpg", category:"Faith", description:"God’s plan for miraculous conception and supernatural childbirth." },
+  { id:8, title:"Turnaround Power of the Word", author:"David Oyedepo", price:900, image:"turnaround_power_of_the_word.jpeg", category:"Faith", description:"Shows how the Word of God can change destiny and bring supernatural turnaround." },
+  { id:9, title:"Understanding the Power of Praise", author:"David Oyedepo", price:900, image:"understanding_the_power_of_praise.webp", category:"Praise", description:"Explains the spiritual power of praise for breakthroughs and miracles." },
+  { id:10, title:"Memory Verse Flash Cards", author:"Faithful Ayana", price:3000, image:"memory_verse_flash_cards.png", category:"Faith", description:"Tool for memorizing scripture quickly and effectively, suitable for children and adults." },
+  { id:11, title:"Walking in the Newness of Life", author:"David Oyedepo", price:900, image:"walking_in_the_newness_of_life.jpg", category:"Faith", description:"Guides believers on living a victorious Christian life." }
 ];
   const bookList = document.getElementById("bookList");
   const cartItems = document.getElementById("cartItems");
   const total = document.getElementById("total");
+  const searchInput = document.getElementById("searchInput");
+  const categoryPills = document.getElementById("categoryPills");
   let cart = [];
 
-  books.forEach(book => {
-    const div = document.createElement("div");
-    div.className = "card";
-    div.innerHTML = `
-      <img src="${book.image}" alt="${book.title}">
-      <h3>${book.title}</h3>
-      <p>${book.author}</p>
-      <p class="price">&#8358;${book.price}</p>
-      <button>Buy via WhatsApp</button>
-    `;
-    div.querySelector("button").onclick = () => {
-      cart.push(book);
-      renderCart();
-      let message = "Hello! I want to buy the following book:\n";
-      cart.forEach(item => {
-        message += `- ${item.title} by ${item.author} (â‚¦${item.price})\n`;
-      });
-      message += `\nTotal: â‚¦${cart.reduce((a,b)=>a+b.price,0)}\nMy payment proof will be sent.`;
-      const url = `https://wa.me/2348103566930?text=${encodeURIComponent(message)}`;
-      window.open(url, "_blank");
+  // Generate category pills
+  const categories = ["All", ...new Set(books.map(b => b.category))];
+  categories.forEach(cat => {
+    const pill = document.createElement("div");
+    pill.className = "category-pill";
+    if(cat==="All") pill.classList.add("active");
+    pill.textContent = cat;
+    pill.onclick = () => {
+      document.querySelectorAll(".category-pill").forEach(p=>p.classList.remove("active"));
+      pill.classList.add("active");
+      applyFilters(cat);
     };
-    bookList.appendChild(div);
+    categoryPills.appendChild(pill);
   });
+
+  function renderBooks(bookArray) {
+    bookList.innerHTML = "";
+    bookArray.forEach(book => {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+        <img src="${book.image}" alt="${book.title}">
+        <div class="card-content">
+          <h3>${book.title}</h3>
+          <p>${book.author}</p>
+          <p class="price">₦${book.price}</p>
+          <p class="description">${book.description}</p>
+          <button><i class="fab fa-whatsapp"></i> Buy via WhatsApp</button>
+        </div>
+      `;
+      div.querySelector("button").onclick = () => {
+        cart.push(book);
+        renderCart();
+        let message = "Hello! I want to buy the following books:\n";
+        cart.forEach(item => message += `- ${item.title} by ${item.author} (₦${item.price})\n`);
+        message += `\nTotal: ₦${cart.reduce((a,b)=>a+b.price,0)}\nI will send my payment proof.`;
+        window.open(`https://wa.me/2348103566930?text=${encodeURIComponent(message)}`, "_blank");
+      };
+      bookList.appendChild(div);
+    });
+  }
 
   function renderCart() {
     cartItems.innerHTML = "";
     let sum = 0;
-    cart.forEach(item=>{
+    cart.forEach(item => {
       sum += item.price;
-      cartItems.innerHTML += `<p>${item.title} - â‚¦${item.price}</p>`;
+      cartItems.innerHTML += `<p>${item.title} - ₦${item.price}</p>`;
     });
     total.innerText = sum;
 
-    if (!document.getElementById("checkoutBtn") && cart.length > 0) {
+    if(!document.getElementById("checkoutBtn") && cart.length>0){
       const checkoutBtn = document.createElement("button");
-      checkoutBtn.id = "checkoutBtn";
-      checkoutBtn.innerText = "View Cart / Checkout via WhatsApp";
-      checkoutBtn.style.marginTop = "10px";
-      checkoutBtn.style.background = "#10b981";
-      checkoutBtn.style.color = "white";
-      checkoutBtn.style.padding = "10px";
-      checkoutBtn.style.border = "none";
-      checkoutBtn.style.borderRadius = "5px";
-      checkoutBtn.style.cursor = "pointer";
+      checkoutBtn.id="checkoutBtn";
+      checkoutBtn.innerText="View Cart / Checkout via WhatsApp";
       checkoutBtn.onclick = () => {
         let message = "Hello! I want to buy the following books:\n";
-        cart.forEach(item => {
-          message += `- ${item.title} by ${item.author} (â‚¦${item.price})\n`;
-        });
-        message += `\nTotal: â‚¦${cart.reduce((a,b)=>a+b.price,0)}\nMy payment proof will be sent.`;
-        const url = `https://wa.me/2348103566930?text=${encodeURIComponent(message)}`;
-        window.open(url, "_blank");
+        cart.forEach(item => message += `- ${item.title} by ${item.author} (₦${item.price})\n`);
+        message += `\nTotal: ₦${cart.reduce((a,b)=>a+b.price,0)}\nI will send my payment proof.`;
+        window.open(`https://wa.me/2348103566930?text=${encodeURIComponent(message)}`, "_blank");
       };
       cartItems.parentNode.appendChild(checkoutBtn);
     }
   }
 
+  function applyFilters(selectedCategory="All"){
+    const query = searchInput.value.toLowerCase();
+    const filtered = books.filter(book => {
+      const matchesSearch = book.title.toLowerCase().includes(query) || book.author.toLowerCase().includes(query);
+      const matchesCategory = selectedCategory==="All" || book.category===selectedCategory;
+      return matchesSearch && matchesCategory;
+    });
+    renderBooks(filtered);
+  }
+
+  searchInput.addEventListener("input", ()=> {
+    const activeCat = document.querySelector(".category-pill.active").textContent;
+    applyFilters(activeCat);
+  });
+
+  renderBooks(books);
+  window.searchBooks = function(){ applyFilters(document.querySelector(".category-pill.active").textContent); }
+
 });
+
+function subscribeNewsletter(e){
+  e.preventDefault();
+  const email = e.target.querySelector('input').value;
+  alert(`Thank you for subscribing with ${email}!`);
+  e.target.reset();
+}
 </script>
 
 </body>

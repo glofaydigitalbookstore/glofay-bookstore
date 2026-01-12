@@ -5,128 +5,55 @@
 <title>Glofay Digital Bookstore</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script src="https://js.paystack.co/v1/inline.js"></script>
 
 <style>
-body{font-family:Arial,sans-serif;margin:0;background:#f2f4f7;padding-top:130px}a{text-decoration:none}
-/* HEADER */
-header{position:fixed;top:0;width:100%;background:#0f172a;color:#fff;z-index:1000;padding:15px 20px}
-.nav-container{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center}
-.logo{display:flex;align-items:center;gap:10px;font-weight:bold}
-.main-nav a{color:#fff;margin-left:20px}
-header p{text-align:center;font-size:0.9rem;margin:5px 0}
-/* SEARCH */
-.search-bar{max-width:600px;margin:20px auto;display:flex}
-.search-bar input{flex:1;padding:10px;border-radius:8px 0 0 8px;border:1px solid #ccc}
-.search-bar button{padding:10px 20px;background:#2563eb;color:#fff;border:none;border-radius:0 8px 8px 0;cursor:pointer}
-/* CATEGORY */
-.category-pills{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:20px}
-.category-pill{padding:8px 15px;border-radius:20px;background:#e5e7eb;cursor:pointer}
-.category-pill.active{background:#2563eb;color:#fff}
-/* BOOK GRID */
+body{font-family:Arial,sans-serif;margin:0;background:#f2f4f7;padding-top:120px}
+header{position:fixed;top:0;width:100%;background:#0f172a;color:#fff;padding:15px;z-index:1000}
+.nav{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center}
+.nav a{color:#fff;margin-left:15px;text-decoration:none}
 .container{max-width:1200px;margin:auto;padding:20px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px}
-.card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,0.08);display:flex;flex-direction:column}
-.card img{width:100%;height:280px;object-fit:contain;background:#f9fafb}
+.card{background:#fff;border-radius:12px;box-shadow:0 6px 15px rgba(0,0,0,.1);display:flex;flex-direction:column}
+.card img{height:260px;object-fit:contain;background:#f9fafb}
 .card-content{padding:15px;display:flex;flex-direction:column}
 .price{color:#10b981;font-weight:bold}
-.card button{margin-top:auto;padding:12px;background:#2563eb;color:white;border:none;border-radius:8px;cursor:pointer}
-/* FOOTER */
-footer{background:#0f172a;color:white;padding:40px 20px;margin-top:40px}
-.footer-container{max-width:1200px;margin:auto;display:flex;flex-wrap:wrap;gap:40px}
-.footer-section{flex:1;min-width:220px}
-.footer-section ul{list-style:none;padding:0}
-.footer-section a{color:white}
-.footer-copy{text-align:center;margin-top:20px;font-size:0.9rem}
+button{margin-top:auto;padding:12px;background:#2563eb;color:#fff;border:none;border-radius:8px;cursor:pointer}
+footer{background:#0f172a;color:#fff;padding:30px;text-align:center;margin-top:40px}
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="nav-container">
-    <div class="ccs_logo.webp"><span>Glofay Digital Bookstore</span></div>
-    <nav class="main-nav">
+  <div class="nav">
+    <strong>Glofay Digital Bookstore</strong>
+    <nav>
       <a href="#">Books</a>
-      <a href="#">Media</a>
       <a href="#">Contact</a>
     </nav>
   </div>
-  <p>Buy Digital Books • Pay Easily • Read Anywhere</p>
 </header>
-
-<div class="search-bar">
-  <input type="text" id="searchInput" placeholder="Search books...">
-  <button onclick="searchBooks()">Search</button>
-</div>
-
-<div class="category-pills" id="categoryPills"></div>
 
 <div class="container">
   <div class="grid" id="bookList"></div>
 </div>
 
 <footer>
-  <div class="footer-container">
-    <div class="footer-section">
-      <h4>About Us</h4>
-      <p>Christian digital bookstore providing faith-based resources.</p>
-    </div>
-    <div class="footer-section">
-      <h4>Policy</h4>
-      <ul>
-        <li><a href="#">Terms of Use</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-      </ul>
-    </div>
-    <div class="footer-section">
-      <h4>Contact</h4>
-      <p>glofaydigitalbookstore@gmail.com</p>
-      <p>0810 356 6930</p>
-    </div>
-  </div>
-  <p class="footer-copy">&copy; 2026 Glofay Digital Bookstore</p>
+  <p>&copy; 2026 Glofay Digital Bookstore</p>
 </footer>
 
 <script>
-const books=[
-  {id:1,title:"Satan Get Lost",author:"David Oyedepo",price:600,image:"satan_get_lost.jpeg",file:"ebooks/satan_get_lost.pdf",category:"Faith"},
-  {id:2,title:"A Believers Guide To Effective Fasting and Prayer",author:"Faith A. Oyedepo",price:1000,image:"a_believers_guide_to_effective_fasting_and_prayer_cover.jpeg",file:"ebooks/a_believers_guide_to_effective_fasting_and_prayer.pdf",category:"Prayer"},
-  {id:3,title:"Success Buttons",author:"David Oyedepo",price:800,image:"success_buttons.jpeg",file:"ebooks/success_buttons.pdf",category:"Success"},
-  {id:4,title:"Born To Win",author:"David Oyedepo",price:900,image:"born_to_win.jpeg",file:"ebooks/born_to_win.pdf",category:"Faith"},
-  {id:5,title:"Winning Prayer",author:"David Oyedepo",price:1200,image:"winning_prayer.jpeg",file:"ebooks/winning_prayer.pdf",category:"Prayer"},
-  {id:6,title:"Prayer Rain",author:"D. K. Olukoya",price:1000,image:"prayer_rain.jpg",file:"ebooks/prayer_rain.pdf",category:"Prayer"},
-  {id:7,title:"Supernatural Childbirth",author:"Jackie Mize",price:1000,image:"supernatural_childbirth.jpg",file:"ebooks/supernatural_childbirth.pdf",category:"Faith"},
-  {id:8,title:"Turnaround Power of the Word",author:"David Oyedepo",price:900,image:"turnaround_power_of_the_word.jpeg",file:"ebooks/turnaround_power_of_the_word.pdf",category:"Faith"},
-  {id:9,title:"Understanding the Power of Praise",author:"David Oyedepo",price:900,image:"understanding_the_power_of_praise.webp",file:"ebooks/understanding_the_power_of_praise.pdf",category:"Praise"},
-  {id:10,title:"Memory Verse Flash Cards",author:"Faithful Ayana",price:3000,image:"memory_verse_flash_cards.png",file:"ebooks/memory_verse_flash_cards.pdf",category:"Faith"},
-  {id:11,title:"Walking in the Newness of Life",author:"David Oyedepo",price:900,image:"walking_in_the_newness_of_life.jpg",file:"ebooks/walking_in_the_newness_of_life.pdf",category:"Faith"}
+const books = [
+  {title:"Satan Get Lost",author:"David Oyedepo",price:600,image:"satan_get_lost.jpeg",file:"ebooks/satan_get_lost.pdf"},
+  {title:"Born To Win",author:"David Oyedepo",price:900,image:"born_to_win.jpeg",file:"ebooks/born_to_win.pdf"},
+  {title:"Winning Prayer",author:"David Oyedepo",price:1200,image:"winning_prayer.jpeg",file:"ebooks/winning_prayer.pdf"}
 ];
 
-const bookList=document.getElementById("bookList");
-const searchInput=document.getElementById("searchInput");
-const categoryPills=document.getElementById("categoryPills");
+const bookList = document.getElementById("bookList");
 
-// Generate category pills
-const categories=["All",...new Set(books.map(b=>b.category))];
-categories.forEach(cat=>{
-  const pill=document.createElement("div");
-  pill.className="category-pill";
-  if(cat==="All") pill.classList.add("active");
-  pill.textContent=cat;
-  pill.onclick=()=>{
-    document.querySelectorAll(".category-pill").forEach(p=>p.classList.remove("active"));
-    pill.classList.add("active");
-    applyFilters(cat);
-  };
-  categoryPills.appendChild(pill);
-});
-
-// Render books
-function renderBooks(list){
-  bookList.innerHTML="";
-  list.forEach(book=>{
+function renderBooks(){
+  books.forEach(book=>{
     const div=document.createElement("div");
     div.className="card";
     div.innerHTML=`
@@ -135,61 +62,42 @@ function renderBooks(list){
         <h3>${book.title}</h3>
         <p>${book.author}</p>
         <p class="price">₦${book.price}</p>
-        <button>Pay & Download PDF</button>
+        <button>Pay & Download</button>
       </div>`;
-    div.querySelector("button").onclick=()=>payAndDownload(book);
+    div.querySelector("button").onclick=()=>pay(book);
     bookList.appendChild(div);
   });
 }
 
-// Filter books
-function applyFilters(cat="All"){
-  const q=searchInput.value.toLowerCase();
-  renderBooks(
-    books.filter(b=>
-      (cat==="All"||b.category===cat)&&
-      (b.title.toLowerCase().includes(q)||b.author.toLowerCase().includes(q))
-    )
-  );
-}
-
-function searchBooks(){
-  const cat=document.querySelector(".category-pill.active").textContent;
-  applyFilters(cat);
-}
-
-// Paystack + automatic download for GitHub Pages
-function payAndDownload(book){
-  const email = prompt("Enter your email to receive your book:");
+function pay(book){
+  const email = prompt("Enter your email:");
   if(!email) return;
 
-  const handler = PaystackPop.setup({
-    key: 'pk_live_0608f614dafc69d94ac92d2ff3a327e5fe6c47d4',
+  PaystackPop.setup({
+    key: "pk_live_0608f614dafc69d94ac92d2ff3a327e5fe6c47d4",
     email: email,
-    amount: book.price*100,
+    amount: book.price * 100,
     currency: "NGN",
-    ref: '' + Math.floor(Math.random()*1000000000+1),
-    metadata: { custom_fields: [{ display_name: "Book", variable_name: "book_title", value: book.title }] },
-    callback: function(response){
-      alert("Payment successful! Ref: " + response.reference);
-
-      // Automatic download
-      const link = document.createElement('a');
-      link.href = book.file; // PDF path
-      link.download = book.file.split('/').pop(); // Filename
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+    callback: function(){
+      alert("Payment successful! Download starting...");
+      startDownload(book.file);
     },
     onClose: function(){
-      alert("Payment cancelled.");
+      alert("Payment cancelled");
     }
-  });
-
-  handler.openIframe();
+  }).openIframe();
 }
 
-renderBooks(books);
+function startDownload(file){
+  const a = document.createElement("a");
+  a.href = file;
+  a.download = "";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+renderBooks();
 </script>
 
 </body>

@@ -152,9 +152,9 @@ footer {
 <body>
 
 <header>
-  <img src="ccs_logo.png" alt="Glofay Logo">
+  <img src="ccs_logo.webp" alt="Glofay Logo">
   <h1>Glofay Digital Bookstore</h1>
-  <p>Buy Digital Books • Pay Easily • Read Anywhere</p>
+  <p>Buy Digital Books &bull; Pay Easily &bull; Read Anywhere</p>
 </header>
 
 <div class="container">
@@ -164,7 +164,7 @@ footer {
   <div class="cart">
     <h3>Cart</h3>
     <div id="cartItems">Empty</div>
-    <p>Total: ₦<span id="total">0</span></p>
+    <p>Total: &#8358;<span id="total">0</span></p>
     <div class="account">
       <h4>Payment Details</h4>
       <p><strong>Account Name:</strong> Glofay Quikpay Concept</p>
@@ -183,8 +183,8 @@ footer {
 <footer style="background-color:#f2f2f2; padding:30px 20px; text-align:center; font-family: Arial, sans-serif;">
 
   <!-- Contact Info -->
-  <p style="margin:5px 0;">📧 Email: <a href="mailto:glofaydigitalbookstore@gmail.com">glofaydigitalbookstore@gmail.com</a></p>
-  <p style="margin:5px 0;">📱 WhatsApp: <a href="https://wa.me/2348103566930?text=Hello%2C%20I%20want%20to%20order%20from%20Glofay%20Digital%20Bookstore" target="_blank">0810 356 6930</a></p>
+  <p style="margin:5px 0;">ðŸ“§ Email: <a href="mailto:glofaydigitalbookstore@gmail.com">glofaydigitalbookstore@gmail.com</a></p>
+  <p style="margin:5px 0;">ðŸ“± WhatsApp: <a href="https://wa.me/2348103566930?text=Hello%2C%20I%20want%20to%20order%20from%20Glofay%20Digital%20Bookstore" target="_blank">0810 356 6930</a></p>
   
   <!-- Social Media Icons -->
   <div style="margin:15px 0;">
@@ -205,13 +205,19 @@ footer {
 document.addEventListener("DOMContentLoaded", function () {
 
   const books = [
-    { id:1, title:"Satan Get Lost", author:"David Oyedepo", price:600, image:"satan_get_lost.jpeg" },
-    { id:2, title:"A Believers Guide To Effective Fasting and Prayer", author:"Faith A. Oyedepo", price:1000, image:"a_believers_guide_to_effective_fasting_and_prayer_cover.jpeg" },
-    { id:3, title:"Success Buttons", author:"David Oyedepo", price:800, image:"success_buttons.jpeg" },
-    { id:4, title:"Born To Win", author:"David Oyedepo", price:900, image:"born_to_win.jpeg" },
-    { id:5, title:"Winning Prayer", author:"David Oyedepo", price:1200, image:"winning_prayer.jpeg" }
-  ];
+  { id:1, title:"Satan Get Lost", author:"David Oyedepo", price:"600", image:"satan_get_lost.jpeg" },
+  { id:2, title:"A Believers Guide To Effective Fasting and Prayer", author:"Faith A. Oyedepo", price:1000, image:"a_believers_guide_to_effective_fasting_and_prayer_cover.jpeg" },
+  { id:3, title:"Success Buttons", author:"David Oyedepo", price:800, image:"success_buttons.jpeg" },
+  { id:4, title:"Born To Win", author:"David Oyedepo", price:900, image:"born_to_win.jpeg" },
+  { id:5, title:"Winning Prayer", author:"David Oyedepo", price:1200, image:"winning_prayer.jpeg" },
 
+  { id:6, title:"Prayer Rain", author:"D. K. Olukoya", price:1000, image:"prayer_rain.jpg" },
+  { id:7, title:"Supernatural Childbirth", author:"Jackie Mize", price:1000, image:"supernatural_childbirth.jpg" },
+  { id:8, title:"Turnaround Power of the Word", author:"David Oyedepo", price:900, image:"turnaround_power_of_the_word.jpeg" },
+  { id:9, title:"Understanding the Power of Praise", author:"David Oyedepo", price:900, image:"understanding_the_power_of_praise.webp" },
+  { id:10, title:"Memory Verse Flash Cards", author:"Faithful Ayana", price:3000, image:"memory_verse_flash_cards.png" },
+  { id:11, title:"Walking in the Newness of Life", author:"David Oyedepo", price:900, image:"walking_in_the_newness_of_life.jpg" }
+];
   const bookList = document.getElementById("bookList");
   const cartItems = document.getElementById("cartItems");
   const total = document.getElementById("total");
@@ -224,7 +230,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <img src="${book.image}" alt="${book.title}">
       <h3>${book.title}</h3>
       <p>${book.author}</p>
-      <p class="price">₦${book.price}</p>
+      <p class="price">&#8358;${book.price}</p>
       <button>Buy via WhatsApp</button>
     `;
     div.querySelector("button").onclick = () => {
@@ -232,9 +238,9 @@ document.addEventListener("DOMContentLoaded", function () {
       renderCart();
       let message = "Hello! I want to buy the following book:\n";
       cart.forEach(item => {
-        message += `- ${item.title} by ${item.author} (₦${item.price})\n`;
+        message += `- ${item.title} by ${item.author} (â‚¦${item.price})\n`;
       });
-      message += `\nTotal: ₦${cart.reduce((a,b)=>a+b.price,0)}\nMy payment proof will be sent.`;
+      message += `\nTotal: â‚¦${cart.reduce((a,b)=>a+b.price,0)}\nMy payment proof will be sent.`;
       const url = `https://wa.me/2348103566930?text=${encodeURIComponent(message)}`;
       window.open(url, "_blank");
     };
@@ -246,7 +252,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let sum = 0;
     cart.forEach(item=>{
       sum += item.price;
-      cartItems.innerHTML += `<p>${item.title} - ₦${item.price}</p>`;
+      cartItems.innerHTML += `<p>${item.title} - â‚¦${item.price}</p>`;
     });
     total.innerText = sum;
 
@@ -264,9 +270,9 @@ document.addEventListener("DOMContentLoaded", function () {
       checkoutBtn.onclick = () => {
         let message = "Hello! I want to buy the following books:\n";
         cart.forEach(item => {
-          message += `- ${item.title} by ${item.author} (₦${item.price})\n`;
+          message += `- ${item.title} by ${item.author} (â‚¦${item.price})\n`;
         });
-        message += `\nTotal: ₦${cart.reduce((a,b)=>a+b.price,0)}\nMy payment proof will be sent.`;
+        message += `\nTotal: â‚¦${cart.reduce((a,b)=>a+b.price,0)}\nMy payment proof will be sent.`;
         const url = `https://wa.me/2348103566930?text=${encodeURIComponent(message)}`;
         window.open(url, "_blank");
       };

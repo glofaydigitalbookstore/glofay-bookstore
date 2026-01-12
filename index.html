@@ -158,25 +158,34 @@ function searchBooks(){
   applyFilters(cat);
 }
 
-// Paystack + secure download with LIVE key
+// Paystack + automatic download for GitHub Pages
 function payAndDownload(book){
-  const email=prompt("Enter your email to receive your book:");
+  const email = prompt("Enter your email to receive your book:");
   if(!email) return;
 
-  const handler=PaystackPop.setup({
-    key:'pk_live_0608f614dafc69d94ac92d2ff3a327e5fe6c47d4', // LIVE key
-    email:email,
-    amount:book.price*100,
-    currency:"NGN",
-    ref:''+Math.floor(Math.random()*1000000000+1),
-    metadata:{custom_fields:[{display_name:"Book",variable_name:"book_title",value:book.title}]},
-    callback:function(response){
-      alert("Payment successful! Ref: "+response.reference);
-      // Redirect to secure download
-      window.location.href=`secure_download.php?file=${encodeURIComponent(book.file)}&email=${encodeURIComponent(email)}&ref=${response.reference}`;
+  const handler = PaystackPop.setup({
+    key: 'pk_live_0608f614dafc69d94ac92d2ff3a327e5fe6c47d4',
+    email: email,
+    amount: book.price*100,
+    currency: "NGN",
+    ref: '' + Math.floor(Math.random()*1000000000+1),
+    metadata: { custom_fields: [{ display_name: "Book", variable_name: "book_title", value: book.title }] },
+    callback: function(response){
+      alert("Payment successful! Ref: " + response.reference);
+
+      // Automatic download
+      const link = document.createElement('a');
+      link.href = book.file; // PDF path
+      link.download = book.file.split('/').pop(); // Filename
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     },
-    onClose:function(){alert("Payment cancelled.");}
+    onClose: function(){
+      alert("Payment cancelled.");
+    }
   });
+
   handler.openIframe();
 }
 
@@ -185,4 +194,3 @@ renderBooks(books);
 
 </body>
 </html>
-

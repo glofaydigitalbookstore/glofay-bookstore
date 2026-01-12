@@ -9,161 +9,36 @@
 <script src="https://js.paystack.co/v1/inline.js"></script>
 
 <style>
-body{
-  font-family:Arial, sans-serif;
-  margin:0;
-  background:#f2f4f7;
-  padding-top:130px;
-}
-a{text-decoration:none}
-
+body{font-family:Arial,sans-serif;margin:0;background:#f2f4f7;padding-top:130px}a{text-decoration:none}
 /* HEADER */
-header{
-  position:fixed;
-  top:0;
-  width:100%;
-  background:#0f172a;
-  color:#fff;
-  z-index:1000;
-  padding:15px 20px;
-}
-.nav-container{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-weight:bold;
-}
-.main-nav a{
-  color:#fff;
-  margin-left:20px;
-}
-header p{
-  text-align:center;
-  font-size:0.9rem;
-  margin:5px 0;
-}
-
+header{position:fixed;top:0;width:100%;background:#0f172a;color:#fff;z-index:1000;padding:15px 20px}
+.nav-container{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:10px;font-weight:bold}
+.main-nav a{color:#fff;margin-left:20px}
+header p{text-align:center;font-size:0.9rem;margin:5px 0}
 /* SEARCH */
-.search-bar{
-  max-width:600px;
-  margin:20px auto;
-  display:flex;
-}
-.search-bar input{
-  flex:1;
-  padding:10px;
-  border-radius:8px 0 0 8px;
-  border:1px solid #ccc;
-}
-.search-bar button{
-  padding:10px 20px;
-  background:#2563eb;
-  color:#fff;
-  border:none;
-  border-radius:0 8px 8px 0;
-  cursor:pointer;
-}
-
+.search-bar{max-width:600px;margin:20px auto;display:flex}
+.search-bar input{flex:1;padding:10px;border-radius:8px 0 0 8px;border:1px solid #ccc}
+.search-bar button{padding:10px 20px;background:#2563eb;color:#fff;border:none;border-radius:0 8px 8px 0;cursor:pointer}
 /* CATEGORY */
-.category-pills{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-bottom:20px;
-}
-.category-pill{
-  padding:8px 15px;
-  border-radius:20px;
-  background:#e5e7eb;
-  cursor:pointer;
-}
-.category-pill.active{
-  background:#2563eb;
-  color:#fff;
-}
-
+.category-pills{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.category-pill{padding:8px 15px;border-radius:20px;background:#e5e7eb;cursor:pointer}
+.category-pill.active{background:#2563eb;color:#fff}
 /* BOOK GRID */
-.container{
-  max-width:1200px;
-  margin:auto;
-  padding:20px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:25px;
-}
-.card{
-  background:#fff;
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 8px 20px rgba(0,0,0,0.08);
-  display:flex;
-  flex-direction:column;
-}
-.card img{
-  width:100%;
-  height:280px;
-  object-fit:contain;
-  background:#f9fafb;
-}
-.card-content{
-  padding:15px;
-  display:flex;
-  flex-direction:column;
-}
-.price{
-  color:#10b981;
-  font-weight:bold;
-}
-.card button{
-  margin-top:auto;
-  padding:12px;
-  background:#2563eb;
-  color:white;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-}
-
+.container{max-width:1200px;margin:auto;padding:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:25px}
+.card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,0.08);display:flex;flex-direction:column}
+.card img{width:100%;height:280px;object-fit:contain;background:#f9fafb}
+.card-content{padding:15px;display:flex;flex-direction:column}
+.price{color:#10b981;font-weight:bold}
+.card button{margin-top:auto;padding:12px;background:#2563eb;color:white;border:none;border-radius:8px;cursor:pointer}
 /* FOOTER */
-footer{
-  background:#0f172a;
-  color:white;
-  padding:40px 20px;
-  margin-top:40px;
-}
-.footer-container{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  flex-wrap:wrap;
-  gap:40px;
-}
-.footer-section{
-  flex:1;
-  min-width:220px;
-}
-.footer-section ul{
-  list-style:none;
-  padding:0;
-}
-.footer-section a{
-  color:white;
-}
-.footer-copy{
-  text-align:center;
-  margin-top:20px;
-  font-size:0.9rem;
-}
+footer{background:#0f172a;color:white;padding:40px 20px;margin-top:40px}
+.footer-container{max-width:1200px;margin:auto;display:flex;flex-wrap:wrap;gap:40px}
+.footer-section{flex:1;min-width:220px}
+.footer-section ul{list-style:none;padding:0}
+.footer-section a{color:white}
+.footer-copy{text-align:center;margin-top:20px;font-size:0.9rem}
 </style>
 </head>
 
@@ -171,9 +46,7 @@ footer{
 
 <header>
   <div class="nav-container">
-    <div class="logo">
-      <span>Glofay Digital Bookstore</span>
-    </div>
+    <div class="ccs_logo"><span>Glofay Digital Bookstore</span></div>
     <nav class="main-nav">
       <a href="#">Books</a>
       <a href="#">Media</a>
@@ -217,7 +90,7 @@ footer{
 </footer>
 
 <script>
-const books = [
+const books=[
   {id:1,title:"Satan Get Lost",author:"David Oyedepo",price:600,image:"satan_get_lost.jpeg",file:"ebooks/satan_get_lost.pdf",category:"Faith"},
   {id:2,title:"A Believers Guide To Effective Fasting and Prayer",author:"Faith A. Oyedepo",price:1000,image:"a_believers_guide_to_effective_fasting_and_prayer_cover.jpeg",file:"ebooks/a_believers_guide_to_effective_fasting_and_prayer.pdf",category:"Prayer"},
   {id:3,title:"Success Buttons",author:"David Oyedepo",price:800,image:"success_buttons.jpeg",file:"ebooks/success_buttons.pdf",category:"Success"},
@@ -274,7 +147,7 @@ function applyFilters(cat="All"){
   const q=searchInput.value.toLowerCase();
   renderBooks(
     books.filter(b=>
-      (cat==="All"||b.category===cat) &&
+      (cat==="All"||b.category===cat)&&
       (b.title.toLowerCase().includes(q)||b.author.toLowerCase().includes(q))
     )
   );
@@ -285,30 +158,24 @@ function searchBooks(){
   applyFilters(cat);
 }
 
-// Paystack + secure download
+// Paystack + secure download with LIVE key
 function payAndDownload(book){
-  const email = prompt("Enter your email for download:");
+  const email=prompt("Enter your email to receive your book:");
   if(!email) return;
 
-  let handler = PaystackPop.setup({
-    key:'pk_test_8780a0b07407a58d5acf4d2aa4d7153183f9dc21',
-    email: email,
-    amount: book.price * 100,
-    currency: "NGN",
-    ref: '' + Math.floor(Math.random() * 1000000000 + 1),
-    metadata:{
-      custom_fields:[
-        {display_name:"Book", variable_name:"book_title", value:book.title}
-      ]
+  const handler=PaystackPop.setup({
+    key:'pk_live_0608f614dafc69d94ac92d2ff3a327e5fe6c47d4', // LIVE key
+    email:email,
+    amount:book.price*100,
+    currency:"NGN",
+    ref:''+Math.floor(Math.random()*1000000000+1),
+    metadata:{custom_fields:[{display_name:"Book",variable_name:"book_title",value:book.title}]},
+    callback:function(response){
+      alert("Payment successful! Ref: "+response.reference);
+      // Redirect to secure download
+      window.location.href=`secure_download.php?file=${encodeURIComponent(book.file)}&email=${encodeURIComponent(email)}&ref=${response.reference}`;
     },
-    callback: function(response){
-      alert("Payment successful! Ref: " + response.reference);
-      // Trigger secure download
-      window.location.href = `secure_download.php?file=${encodeURIComponent(book.file)}&email=${encodeURIComponent(email)}&ref=${response.reference}`;
-    },
-    onClose: function(){
-      alert("Payment cancelled.");
-    }
+    onClose:function(){alert("Payment cancelled.");}
   });
   handler.openIframe();
 }
@@ -317,4 +184,4 @@ renderBooks(books);
 </script>
 
 </body>
-  </html>
+</html>

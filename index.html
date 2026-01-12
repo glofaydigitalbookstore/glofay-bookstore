@@ -46,7 +46,10 @@ footer{background:#0f172a;color:white;padding:40px 20px;margin-top:40px}
 
 <header>
   <div class="nav-container">
-    <div class="logo"><span>Glofay Digital Bookstore</span></div>
+<div class="logo">
+  <img src="ccs_logo.webp" alt="Glofay Digital Bookstore" style="height:40px;">
+  <span>Glofay Digital Bookstore</span>
+</div>
     <nav class="main-nav">
       <a href="#">Books</a>
       <a href="#">Media</a>
@@ -90,7 +93,7 @@ footer{background:#0f172a;color:white;padding:40px 20px;margin-top:40px}
 </footer>
 
 <script>
-const books = [
+const books=[
   {id:1,title:"Satan Get Lost",author:"David Oyedepo",price:600,image:"satan_get_lost.jpeg",file:"ebooks/satan_get_lost.pdf",category:"Faith"},
   {id:2,title:"A Believers Guide To Effective Fasting and Prayer",author:"Faith A. Oyedepo",price:1000,image:"a_believers_guide_to_effective_fasting_and_prayer_cover.jpeg",file:"ebooks/a_believers_guide_to_effective_fasting_and_prayer.pdf",category:"Prayer"},
   {id:3,title:"Success Buttons",author:"David Oyedepo",price:800,image:"success_buttons.jpeg",file:"ebooks/success_buttons.pdf",category:"Success"},
@@ -108,7 +111,7 @@ const bookList=document.getElementById("bookList");
 const searchInput=document.getElementById("searchInput");
 const categoryPills=document.getElementById("categoryPills");
 
-// Generate categories
+// Generate category pills
 const categories=["All",...new Set(books.map(b=>b.category))];
 categories.forEach(cat=>{
   const pill=document.createElement("div");
@@ -142,11 +145,14 @@ function renderBooks(list){
   });
 }
 
-// Filter and search
+// Filter books
 function applyFilters(cat="All"){
   const q=searchInput.value.toLowerCase();
   renderBooks(
-    books.filter(b=>(cat==="All"||b.category===cat)&&(b.title.toLowerCase().includes(q)||b.author.toLowerCase().includes(q)))
+    books.filter(b=>
+      (cat==="All"||b.category===cat)&&
+      (b.title.toLowerCase().includes(q)||b.author.toLowerCase().includes(q))
+    )
   );
 }
 
@@ -155,24 +161,24 @@ function searchBooks(){
   applyFilters(cat);
 }
 
-// Paystack payment with automatic download
+// Paystack payment with automatic GitHub download
 function payAndDownload(book){
-  const email = prompt("Enter your email:");
+  const email=prompt("Enter your email for receipt:");
   if(!email) return;
 
-  const handler = PaystackPop.setup({
+  const handler=PaystackPop.setup({
     key:'pk_live_0608f614dafc69d94ac92d2ff3a327e5fe6c47d4', // LIVE key
-    email: email,
-    amount: book.price*100,
+    email:email,
+    amount:book.price*100,
     currency:"NGN",
     ref:''+Math.floor(Math.random()*1000000000+1),
     metadata:{custom_fields:[{display_name:"Book",variable_name:"book_title",value:book.title}]},
     callback:function(response){
       alert("Payment successful! Ref: "+response.reference);
-      // Automatic download from GitHub
-      const link = document.createElement("a");
-      link.href = book.file;
-      link.download = book.file.split('/').pop();
+      // Trigger automatic download directly from GitHub Pages
+      const link=document.createElement("a");
+      link.href=book.file; // GitHub URL relative path
+      link.download=book.file.split("/").pop();
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
